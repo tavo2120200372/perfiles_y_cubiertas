@@ -1,0 +1,249 @@
+.servicios,
+.servicio-lightbox {
+  --servicio-fondo: var(--fondo-pagina);
+  --servicio-texto: var(--texto-principal);
+  --servicio-texto-secundario: var(--texto-secundario);
+  --servicio-texto-suave: var(--texto-suave);
+  --servicio-acento: var(--acento);
+
+  color: var(--servicio-texto);
+
+  font-family:
+    'Inter Variable',
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+.servicios *,
+.servicio-lightbox,
+.servicio-lightbox * {
+  box-sizing: border-box;
+}
+
+.servicios {
+  padding: 112px 56px;
+
+  background: var(--servicio-fondo);
+
+  scroll-margin-top: 112px;
+
+  transition:
+    background-color 450ms ease,
+    color 450ms ease;
+}
+
+.servicios-contenedor {
+  width: 100%;
+  max-width: 1272px;
+
+  margin-inline: auto;
+  padding: 0 56px;
+}
+
+.servicios-encabezado {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+
+  margin-bottom: 80px;
+}
+
+.servicios-etiqueta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin: 0 0 24px;
+
+  color: var(--texto-etiqueta);
+
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+
+  transition:
+    color 450ms ease;
+}
+
+.servicios-punto {
+  position: relative;
+
+  display: inline-flex;
+
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+}
+
+.servicios-punto-pulso {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+
+  background: var(--servicio-acento);
+  opacity: 0.7;
+
+  animation:
+    servicios-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.servicios-punto-centro {
+  position: relative;
+
+  display: inline-flex;
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: var(--servicio-acento);
+
+  box-shadow:
+    0 0 8px rgba(8, 155, 181, 0.25);
+}
+
+.servicios-encabezado h2 {
+  margin: 0;
+
+  color: var(--servicio-texto);
+
+  font-size: clamp(36px, 4.4vw, 60px);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+
+  transition:
+    color 450ms ease;
+}
+
+.servicios-encabezado h2 strong {
+  font-weight: 600;
+}
+
+.servicios-introduccion {
+  max-width: 570px;
+
+  margin: 24px 0 0;
+
+  color: var(--servicio-texto-suave);
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+
+  transition:
+    color 450ms ease;
+}
+
+.servicios-enlace {
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 14px 26px;
+
+  border: 1px solid var(--borde-vidrio);
+  border-radius: 999px;
+
+  background: var(--superficie-vidrio-suave);
+  color: inherit;
+
+  font-size: 14px;
+  text-decoration: none;
+
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+
+  transition:
+    background-color 250ms ease,
+    border-color 250ms ease;
+}
+
+.servicios-enlace:hover {
+  background: var(--nav-hover);
+}
+
+.servicios .revelar {
+  min-width: 0;
+}
+
+.servicios .revelar>.servicio-tarjeta {
+  height: 100%;
+}
+
+.servicios button,
+.servicio-lightbox button {
+  font-family: inherit;
+}
+
+.servicios :focus-visible,
+.servicio-lightbox :focus-visible {
+  outline: 2px solid var(--servicio-acento);
+  outline-offset: 4px;
+}
+
+@keyframes servicios-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .servicios {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .servicios-contenedor {
+    padding-inline: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .servicios {
+    padding: 72px 20px;
+  }
+
+  .servicios-contenedor {
+    padding-inline: 0;
+  }
+
+  .servicios-encabezado {
+    align-items: flex-start;
+    flex-direction: column;
+
+    margin-bottom: 48px;
+  }
+
+  .servicios-introduccion {
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .servicios-punto-pulso {
+    animation: none;
+    opacity: 0;
+  }
+}

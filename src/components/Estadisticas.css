@@ -1,0 +1,132 @@
+.estadisticas {
+  position: relative;
+  isolation: isolate;
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  padding: 58px 24px 72px;
+  overflow: hidden;
+  background: transparent;
+  color: var(--texto-principal);
+  transition: color 450ms ease;
+}
+
+.estadisticas::after {
+  content: none;
+}
+
+.estadisticas-contenedor {
+  position: relative;
+  z-index: 1;
+  width: min(76vw, 1100px);
+  margin-inline: auto;
+}
+
+.estadisticas-linea {
+  width: 100%;
+  height: 1px;
+  margin-bottom: 42px;
+  background: var(--borde-elemento);
+  transform: scaleX(0);
+  transform-origin: center;
+  opacity: 0;
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1), opacity 450ms ease;
+}
+
+.estadisticas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(28px, 6vw, 88px);
+}
+
+.estadistica {
+  min-width: 0;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 650ms ease, transform 750ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.estadistica:nth-child(2) {
+  transition-delay: 50ms;
+}
+
+.estadistica:nth-child(3) {
+  transition-delay: 100ms;
+}
+
+.estadistica-valor {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 7px;
+  margin: 0;
+}
+
+.estadistica-numero {
+  color: var(--texto-principal);
+  font-size: clamp(42px, 4.4vw, 56px);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
+  transition: color 450ms ease;
+}
+
+.estadistica-sufijo {
+  color: var(--acento);
+  font-size: clamp(15px, 1.5vw, 20px);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.estadistica-descripcion {
+  margin: 14px 0 0;
+  color: var(--texto-suave);
+  font-size: clamp(12px, 1.2vw, 16px);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.015em;
+  transition: color 450ms ease;
+}
+
+.estadisticas--visible .estadisticas-linea {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.estadisticas--visible .estadistica {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 767px) {
+  .estadisticas {
+    padding: 52px 20px 68px;
+  }
+
+  .estadisticas-contenedor {
+    width: min(100%, 520px);
+  }
+
+  .estadisticas-linea {
+    margin-bottom: 36px;
+  }
+
+  .estadisticas-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 34px;
+  }
+
+  .estadistica-descripcion {
+    margin-top: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .estadisticas-linea,
+  .estadistica {
+    transition: none;
+  }
+}

@@ -1,0 +1,146 @@
+:root {
+  color-scheme: light;
+  --acento: #089bb5;
+  --fondo-pagina: #e8edf1;
+  --texto-principal: #0a1018;
+  --texto-secundario: #35414b;
+  --texto-suave: #788089;
+  --texto-etiqueta: #646b72;
+  --superficie-vidrio: rgba(255, 255, 255, 0.55);
+  --superficie-vidrio-suave: rgba(255, 255, 255, 0.3);
+  --borde-vidrio: rgba(255, 255, 255, 0.85);
+  --boton-principal: #101820;
+  --boton-principal-texto: #ffffff;
+  --boton-principal-hover: #263744;
+  --nav-hover: rgba(255, 255, 255, 0.8);
+  --nav-indicador-fondo-inicio: rgba(255, 255, 255, 0.2);
+  --nav-indicador-fondo-fin: rgba(255, 255, 255, 0.07);
+  --nav-indicador-borde: rgba(255, 255, 255, 0.34);
+  --nav-indicador-reflejo: rgba(255, 255, 255, 0.78);
+  --sombra: rgba(16, 24, 32, 0.08);
+  --hero-brillo: 1;
+  --hero-capa-superior: rgba(232, 237, 241, 0.58);
+  --hero-capa-inferior: rgba(232, 237, 241, 0.7);
+  --hero-fundido: #e8edf1;
+  --hero-etiqueta-fondo: rgba(255, 255, 255, 0.3);
+  --hero-etiqueta-borde: rgba(255, 255, 255, 0.85);
+  --boton-cristal-fondo: rgba(255, 255, 255, 0.35);
+  --boton-cristal-hover: rgba(255, 255, 255, 0.6);
+  --boton-cristal-borde: rgba(255, 255, 255, 0.9);
+  --tarjeta-fondo: rgba(255, 255, 255, 0.28);
+  --tarjeta-borde: rgba(255, 255, 255, 0.72);
+  --fondo-imagen: #d9e0e5;
+  --control-fondo: rgba(255, 255, 255, 0.35);
+  --control-hover: rgba(255, 255, 255, 0.7);
+  --control-borde: rgba(255, 255, 255, 0.75);
+  --control-texto: #303840;
+  --borde-elemento: rgba(10, 16, 24, 0.1);
+  --texto-tarjeta-suave: rgba(10, 16, 24, 0.4);
+  --texto-tarjeta-medio: rgba(10, 16, 24, 0.55);
+  --texto-tarjeta-fuerte: rgba(10, 16, 24, 0.8);
+  --indicador-inactivo: rgba(10, 16, 24, 0.35);
+  --indicador-activo: #0a1018;
+  --gradiente-imagen: rgba(232, 237, 242, 0.8);
+  --gradiente-modal-inicio: rgba(232, 237, 242, 0.86);
+  --gradiente-modal-medio: rgba(232, 237, 242, 0.3);
+  --lightbox-backdrop: rgba(232, 237, 242, 0.62);
+  --nosotros-ficha-etiqueta: #087f97;
+  --nosotros-ficha-numero: #0a1018;
+  --nosotros-ficha-fondo: rgba(232, 237, 241, 0.74);
+  --nosotros-ficha-borde: rgba(255, 255, 255, 0.82);
+  --nosotros-ficha-etiqueta: #066f85;
+  --nosotros-ficha-numero: #071018;
+  --nosotros-ficha-texto: #1f2e38;
+  --nosotros-ficha-sombra: 0 1px 10px rgba(255, 255, 255, 0.28);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --fondo-pagina: #090b0e;
+  --texto-principal: #f5f6f7;
+  --texto-secundario: #d1d5d9;
+  --texto-suave: #9ba2a9;
+  --texto-etiqueta: #aeb5bc;
+  --superficie-vidrio: rgba(25, 29, 33, 0.6);
+  --superficie-vidrio-suave: rgba(20, 24, 28, 0.42);
+  --borde-vidrio: rgba(255, 255, 255, 0.2);
+  --boton-principal: #f7f7f7;
+  --boton-principal-texto: #101214;
+  --boton-principal-hover: #dedede;
+  --nav-hover: rgba(255, 255, 255, 0.1);
+  --nav-indicador-fondo-inicio: rgba(255, 255, 255, 0.14);
+  --nav-indicador-fondo-fin: rgba(255, 255, 255, 0.035);
+  --nav-indicador-borde: rgba(255, 255, 255, 0.24);
+  --nav-indicador-reflejo: rgba(255, 255, 255, 0.62);
+  --sombra: rgba(0, 0, 0, 0.3);
+  --hero-brillo: 0.38;
+  --hero-capa-superior: rgba(9, 11, 14, 0.12);
+  --hero-capa-inferior: rgba(9, 11, 14, 0.3);
+  --hero-fundido: #090b0e;
+  --hero-etiqueta-fondo: rgba(20, 24, 28, 0.38);
+  --hero-etiqueta-borde: rgba(255, 255, 255, 0.22);
+  --boton-cristal-fondo: rgba(255, 255, 255, 0.08);
+  --boton-cristal-hover: rgba(255, 255, 255, 0.14);
+  --boton-cristal-borde: rgba(255, 255, 255, 0.22);
+  --tarjeta-fondo: rgba(255, 255, 255, 0.055);
+  --tarjeta-borde: rgba(255, 255, 255, 0.14);
+  --fondo-imagen: #161a1f;
+  --control-fondo: rgba(10, 12, 15, 0.46);
+  --control-hover: rgba(255, 255, 255, 0.12);
+  --control-borde: rgba(255, 255, 255, 0.18);
+  --control-texto: #e2e5e8;
+  --borde-elemento: rgba(255, 255, 255, 0.14);
+  --texto-tarjeta-suave: rgba(245, 246, 247, 0.48);
+  --texto-tarjeta-medio: rgba(245, 246, 247, 0.62);
+  --texto-tarjeta-fuerte: rgba(245, 246, 247, 0.82);
+  --indicador-inactivo: rgba(255, 255, 255, 0.38);
+  --indicador-activo: #f5f6f7;
+  --gradiente-imagen: rgba(9, 11, 14, 0.78);
+  --gradiente-modal-inicio: rgba(9, 11, 14, 0.84);
+  --gradiente-modal-medio: rgba(9, 11, 14, 0.3);
+  --lightbox-backdrop: rgba(4, 6, 8, 0.76);
+  --nosotros-ficha-fondo: rgba(9, 11, 14, 0.5);
+  --nosotros-ficha-borde: rgba(255, 255, 255, 0.22);
+  --nosotros-ficha-etiqueta: #46d9ec;
+  --nosotros-ficha-numero: #ffffff;
+  --nosotros-ficha-texto: #f2fbfc;
+  --nosotros-ficha-sombra: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: var(--fondo-pagina);
+  color: var(--texto-principal);
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 450ms ease, color 450ms ease;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

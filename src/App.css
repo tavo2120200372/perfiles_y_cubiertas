@@ -1,0 +1,49 @@
+#root {
+  min-height: 100svh;
+}
+
+.portada-inicio {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--fondo-pagina);
+}
+
+.portada-inicio::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(
+      180deg,
+      var(--hero-capa-superior) 0%,
+      var(--hero-capa-superior) 48%,
+      var(--hero-capa-inferior) 78%,
+      var(--fondo-pagina) 100%
+    ),
+    url('/images/portada.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  filter: brightness(var(--hero-brillo));
+  transition: filter 500ms ease;
+}
+
+.portada-inicio::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  height: 180px;
+  background: linear-gradient(to bottom, transparent, var(--fondo-pagina));
+  pointer-events: none;
+}
+
+.portada-inicio > .hero,
+.portada-inicio > .estadisticas {
+  position: relative;
+  z-index: 1;
+}
