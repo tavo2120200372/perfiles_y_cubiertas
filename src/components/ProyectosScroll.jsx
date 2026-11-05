@@ -89,7 +89,7 @@ function ProyectosScroll() {
         const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: escena,
-            start: "top 90%",
+            start: "top top",
             end: () => `+=${window.innerHeight * 2.25}`,
             pin: true,
             scrub: 0.8,
@@ -105,7 +105,7 @@ function ProyectosScroll() {
               xPercent: -52,
               yPercent: -36,
               autoAlpha: 0,
-              duration: 1,
+              duration: 0.72,
               ease: "none",
             },
             0,
@@ -116,10 +116,10 @@ function ProyectosScroll() {
               xPercent: 14,
               yPercent: -48,
               autoAlpha: 0,
-              duration: 1,
+              duration: 0.72,
               ease: "none",
             },
-            0.05,
+            0.03,
           )
           .from(
             piezas[2],
@@ -127,10 +127,10 @@ function ProyectosScroll() {
               xPercent: 48,
               yPercent: -30,
               autoAlpha: 0,
-              duration: 1,
+              duration: 0.72,
               ease: "none",
             },
-            0.1,
+            0.6,
           )
           .from(
             piezas[3],
@@ -138,10 +138,10 @@ function ProyectosScroll() {
               xPercent: -46,
               yPercent: 32,
               autoAlpha: 0,
-              duration: 1,
+              duration: 0.72,
               ease: "none",
             },
-            0.15,
+            0.9,
           )
           .from(
             piezas[4],
@@ -149,10 +149,10 @@ function ProyectosScroll() {
               xPercent: 12,
               yPercent: 44,
               autoAlpha: 0,
-              duration: 1,
+              duration: 0.72,
               ease: "none",
             },
-            0.2,
+            0.12,
           )
           .from(
             piezas[5],
@@ -160,10 +160,10 @@ function ProyectosScroll() {
               xPercent: 52,
               yPercent: 36,
               autoAlpha: 0,
-              duration: 1,
+              duration: 0.72,
               ease: "none",
             },
-            0.24,
+            0.15,
           )
           .from(
             fichas,
@@ -175,7 +175,7 @@ function ProyectosScroll() {
               duration: 0.48,
               ease: "none",
             },
-            1.3,
+            0.92,
           )
           .to({}, { duration: 0.5 });
       });
