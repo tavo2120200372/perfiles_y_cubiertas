@@ -7,6 +7,7 @@ import Nosotros from './components/Nosotros'
 import Contacto from './components/Contacto'
 import Footer from './components/Footer'
 import CursorPersonalizado from './components/CursorPersonalizado'
+import ProyectosScroll from './components/ProyectosScroll'
 import './App.css'
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
           <Hero />
           <Estadisticas />
         </div>
-
+        <ProyectosScroll />
         <Servicios />
         <Trabajos />
         <Nosotros />

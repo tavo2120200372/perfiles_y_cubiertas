@@ -1,5 +1,4 @@
 /* ===== Encabezado ===== */
-
 .encabezado {
   position: fixed;
   top: 20px;
@@ -15,7 +14,6 @@
 }
 
 /* ===== Superficie de vidrio compartida ===== */
-
 .marca,
 .navegacion {
   color: var(--texto-principal);
@@ -36,7 +34,6 @@
 }
 
 /* ===== Marca ===== */
-
 .marca {
   display: flex;
   align-items: center;
@@ -75,7 +72,6 @@
 }
 
 /* ===== Navegación ===== */
-
 .navegacion {
   position: relative;
   display: flex;
@@ -124,7 +120,6 @@
 }
 
 /* ===== Botón de tema ===== */
-
 .boton-tema {
   position: relative;
   z-index: 2;
@@ -163,16 +158,67 @@
   stroke-linejoin: round;
 }
 
-/* ===== Foco accesible ===== */
+/* ===== Botón hamburguesa ===== */
+.boton-menu {
+  position: relative;
+  z-index: 2;
+  display: none;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  padding: 0;
+  border: 1px solid var(--borde-vidrio);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--texto-principal);
+  cursor: pointer;
+}
 
+.boton-menu span {
+  position: absolute;
+  width: 21px;
+  height: 1.5px;
+  border-radius: 999px;
+  background: currentColor;
+  transition:
+    transform 250ms ease,
+    opacity 200ms ease;
+}
+
+.boton-menu span:nth-child(1) {
+  transform: translateY(-6px);
+}
+
+.boton-menu span:nth-child(2) {
+  transform: translateY(0);
+}
+
+.boton-menu span:nth-child(3) {
+  transform: translateY(6px);
+}
+
+.boton-menu--abierto span:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.boton-menu--abierto span:nth-child(2) {
+  opacity: 0;
+}
+
+.boton-menu--abierto span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+/* ===== Foco accesible ===== */
 .encabezado a:focus-visible,
-.boton-tema:focus-visible {
+.boton-tema:focus-visible,
+.boton-menu:focus-visible {
   outline: 2px solid var(--acento-foco, #247d92);
   outline-offset: 4px;
 }
 
 /* ===== Indicador de sección activa ===== */
-
 .nav-indicador-activo {
   position: absolute;
   z-index: 1;
@@ -217,42 +263,156 @@
   pointer-events: none;
 }
 
-/* ===== Pantallas pequeñas ===== */
+/* ===== Menú móvil ===== */
+.menu-movil {
+  position: fixed;
+  top: 92px;
+  right: 16px;
+  z-index: 101;
+  width: min(340px, calc(100vw - 32px));
+  padding: 10px;
+  border: 1px solid var(--borde-vidrio);
+  border-radius: 26px;
+  background: var(--superficie-vidrio);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  backdrop-filter: blur(24px) saturate(150%);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, -10px, 0) scale(0.98);
+  transform-origin: top right;
+  pointer-events: none;
+  transition:
+    opacity 220ms ease,
+    visibility 220ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
 
+.menu-movil--abierto {
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(0, 0, 0) scale(1);
+  pointer-events: auto;
+}
+
+.menu-movil > a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  color: var(--texto-principal);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    color 200ms ease,
+    background-color 200ms ease;
+}
+
+.menu-movil > a:hover,
+.menu-movil > a[aria-current='page'] {
+  background: var(--nav-hover);
+  color: var(--acento);
+}
+
+.menu-movil .menu-movil-cotizar {
+  justify-content: center;
+  gap: 9px;
+  margin-top: 8px;
+  border-radius: 999px;
+  background: var(--boton-principal);
+  color: var(--boton-principal-texto);
+}
+
+.menu-movil .menu-movil-cotizar:hover {
+  background: var(--boton-principal-hover);
+  color: var(--boton-principal-texto);
+}
+
+/* ===== Pantallas pequeñas ===== */
 @media (max-width: 800px) {
   .encabezado {
-    top: 12px;
-    width: calc(100% - 24px);
-    flex-direction: column;
-    gap: 10px;
+    top: 18px;
+    width: calc(100% - 32px);
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .marca {
+    width: 58px;
+    height: 58px;
+    min-height: 58px;
+    padding: 6px;
+    border-radius: 50%;
+  }
+
+  .marca-siglas {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+    font-size: 13px;
+  }
+
+  .marca-nombre {
+    display: none;
   }
 
   .navegacion {
-    max-width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-    border-radius: 24px;
+    margin-left: auto;
+    min-height: 58px;
+    padding: 4px;
+    gap: 4px;
+    flex-wrap: nowrap;
   }
 
-  .navegacion a {
-    min-height: 34px;
-    padding: 8px 10px;
+  .navegacion > a {
+    display: none;
+  }
+
+  .navegacion .boton-cotizar {
+    display: none;
   }
 
   .nav-indicador-activo {
     display: none;
   }
+
+  .boton-tema {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+  }
+
+  .boton-tema svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .boton-menu {
+    display: grid;
+  }
+}
+
+@media (min-width: 801px) {
+  .menu-movil {
+    display: none;
+  }
 }
 
 /* ===== Movimiento reducido ===== */
-
 @media (prefers-reduced-motion: reduce) {
   .marca,
   .navegacion,
   .navegacion a,
   .nav-indicador-activo,
   .boton-tema,
-  .navegacion .boton-cotizar {
+  .navegacion .boton-cotizar,
+  .boton-menu span,
+  .menu-movil,
+  .menu-movil > a {
     transition: none;
   }
 

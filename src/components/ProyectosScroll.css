@@ -1,0 +1,435 @@
+.proyectos-scroll {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  background: var(--fondo-pagina);
+  color: var(--texto-principal);
+}
+
+.proyecto-scroll-escena {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  height: 100svh;
+  min-height: 0;
+  overflow: clip;
+  background: var(--fondo-pagina);
+  isolation: isolate;
+}
+
+.proyecto-scroll-contenedor {
+  position: relative;
+  width: min(calc(100% - 48px), 1780px);
+  height: 100%;
+  margin-inline: auto;
+  overflow: visible;
+}
+
+.proyecto-scroll-fondo {
+  position: absolute;
+  left: -1.5%;
+  top: 42%;
+  z-index: 0;
+  color: var(--texto-principal);
+  font-size: clamp(210px, 22vw, 430px);
+  font-weight: 700;
+  line-height: 0.7;
+  letter-spacing: -0.085em;
+  opacity: 0.035;
+  pointer-events: none;
+  user-select: none;
+}
+
+.proyecto-scroll-encabezado {
+  position: absolute;
+  top: 40px;
+  left: 48px;
+  z-index: 5;
+  width: min(720px, 48vw);
+  padding: 18px 40px 24px 0;
+}
+
+.proyecto-scroll-encabezado::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -30px;
+  right: -120px;
+  bottom: -30px;
+  left: -48px;
+  background: linear-gradient(
+    90deg,
+    var(--fondo-pagina) 0%,
+    var(--fondo-pagina) 45%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.proyecto-scroll-etiqueta {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--texto-secundario);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.38em;
+}
+
+.proyecto-scroll-numero {
+  display: block;
+  margin-bottom: 22px;
+  color: var(--acento);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.28em;
+}
+
+.proyecto-scroll-encabezado h2 {
+  margin: 0;
+  color: var(--texto-principal);
+  font-size: clamp(70px, 5.65vw, 108px);
+  font-weight: 300;
+  line-height: 0.82;
+  letter-spacing: -0.06em;
+  text-shadow: 0 1px 12px rgba(232, 237, 241, 0.26);
+}
+
+:root[data-theme="dark"] .proyecto-scroll-encabezado h2 {
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
+}
+
+.proyecto-scroll-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 24px 0 0;
+  color: var(--texto-secundario);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+}
+
+.proyecto-scroll-meta span {
+  color: var(--texto-etiqueta);
+  opacity: 0.65;
+}
+
+.proyecto-scroll-visual {
+  position: absolute;
+  top: 30px;
+  right: auto;
+  bottom: 30px;
+  left: 50%;
+  z-index: 2;
+  width: min(68vw, 1320px);
+  height: auto;
+  transform: translateX(-50%);
+  overflow: visible;
+}
+
+.proyecto-scroll-imagen {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--fondo-imagen);
+  box-shadow: 0 18px 60px rgba(16, 24, 32, 0.08);
+}
+
+.proyecto-scroll-pieza {
+  position: absolute;
+  inset: 0;
+  background-image: var(--imagen-proyecto);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  will-change: transform, opacity;
+}
+
+.proyecto-scroll-pieza--1 {
+  clip-path: inset(0 43% 53% 0);
+}
+
+.proyecto-scroll-pieza--2 {
+  clip-path: inset(0 0 53% 57%);
+}
+
+.proyecto-scroll-pieza--3 {
+  clip-path: inset(47% 57% 0 0);
+}
+
+.proyecto-scroll-pieza--4 {
+  clip-path: inset(47% 0 0 43%);
+}
+
+.proyecto-scroll-ficha {
+  position: absolute;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 280px;
+  max-width: calc(100% - 48px);
+  min-height: 90px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.48);
+  color: #151a20;
+  box-sizing: border-box;
+  -webkit-backdrop-filter: blur(16px) saturate(145%);
+  backdrop-filter: blur(16px) saturate(145%);
+  box-shadow:
+    0 16px 34px rgba(16, 24, 32, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  will-change: transform, opacity;
+}
+
+:root[data-theme="dark"] .proyecto-scroll-ficha {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(18, 22, 26, 0.62);
+  color: #f5f6f7;
+}
+
+.proyecto-scroll-miniatura {
+  width: 62px;
+  height: 62px;
+  flex: 0 0 62px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--fondo-imagen);
+}
+
+.proyecto-scroll-miniatura img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.proyecto-scroll-ficha-contenido {
+  min-width: 0;
+}
+
+.proyecto-scroll-ficha strong {
+  display: block;
+  margin-bottom: 5px;
+  color: currentColor;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.18;
+}
+
+.proyecto-scroll-ficha-contenido > span {
+  display: block;
+  color: #626b74;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+:root[data-theme="dark"] .proyecto-scroll-ficha-contenido > span {
+  color: #aeb5bc;
+}
+
+.ficha-a {
+  top: 9%;
+  right: 3%;
+  bottom: auto;
+  left: auto;
+}
+
+.ficha-b {
+  top: auto;
+  right: auto;
+  bottom: 18%;
+  left: 5%;
+}
+
+.ficha-c {
+  top: auto;
+  right: 5%;
+  bottom: 5%;
+  left: auto;
+}
+
+@media (max-width: 1300px) {
+  .proyecto-scroll-contenedor {
+    width: calc(100% - 32px);
+  }
+
+  .proyecto-scroll-encabezado {
+    left: 26px;
+    width: min(590px, 48vw);
+  }
+
+  .proyecto-scroll-encabezado h2 {
+    font-size: clamp(64px, 5.6vw, 86px);
+  }
+
+  .proyecto-scroll-visual {
+    width: min(70vw, 1180px);
+  }
+
+  .proyecto-scroll-ficha {
+    width: 240px;
+  }
+
+  .proyecto-scroll-miniatura {
+    width: 54px;
+    height: 54px;
+    flex-basis: 54px;
+  }
+}
+
+@media (max-width: 900px) {
+  .proyecto-scroll-contenedor {
+    width: calc(100% - 24px);
+  }
+
+  .proyecto-scroll-encabezado {
+    top: 96px;
+    left: 18px;
+    width: calc(100% - 36px);
+  }
+
+  .proyecto-scroll-etiqueta {
+    margin-bottom: 14px;
+    font-size: 9px;
+  }
+
+  .proyecto-scroll-numero {
+    margin-bottom: 15px;
+    font-size: 10px;
+  }
+
+  .proyecto-scroll-encabezado h2 {
+    max-width: 430px;
+    font-size: clamp(48px, 12vw, 72px);
+    line-height: 0.88;
+  }
+
+  .proyecto-scroll-meta {
+    margin-top: 18px;
+    font-size: 9px;
+    white-space: normal;
+    flex-wrap: wrap;
+  }
+
+  .proyecto-scroll-fondo {
+    left: -8px;
+    top: 38%;
+    font-size: 42vw;
+  }
+
+  .proyecto-scroll-visual {
+    top: 250px;
+    bottom: 24px;
+    width: calc(100% - 20px);
+    height: auto;
+    min-height: 0;
+  }
+
+  .proyecto-scroll-imagen {
+    border-radius: 22px;
+  }
+
+  .proyecto-scroll-ficha {
+    width: min(210px, 48%);
+    min-height: 70px;
+    padding: 9px 10px;
+    border-radius: 16px;
+  }
+
+  .proyecto-scroll-miniatura {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+    border-radius: 10px;
+  }
+
+  .proyecto-scroll-ficha strong {
+    font-size: 10px;
+  }
+
+  .proyecto-scroll-ficha-contenido > span {
+    font-size: 9px;
+  }
+
+  .ficha-a {
+    top: 5%;
+    right: 3%;
+    bottom: auto;
+    left: auto;
+  }
+
+  .ficha-b {
+    top: 55%;
+    left: 3%;
+    right: auto;
+    bottom: auto;
+  }
+
+  .ficha-c {
+    top: 73%;
+    right: 3%;
+    bottom: auto;
+    left: auto;
+  }
+
+  .proyecto-scroll-punto--1 {
+    top: 25%;
+    left: 57%;
+  }
+
+  .proyecto-scroll-punto--2 {
+    top: 48%;
+    left: 29%;
+  }
+
+  .proyecto-scroll-punto--3 {
+    top: 60%;
+    right: 25%;
+  }
+
+  .proyecto-scroll-linea {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .proyecto-scroll-encabezado {
+    top: 90px;
+  }
+
+  .proyecto-scroll-encabezado h2 {
+    max-width: 360px;
+    font-size: clamp(44px, 13vw, 62px);
+  }
+
+  .proyecto-scroll-visual {
+    top: 235px;
+    bottom: 18px;
+    height: auto;
+  }
+
+  .proyecto-scroll-ficha {
+    width: min(190px, 52%);
+  }
+
+  .proyecto-scroll-ficha-contenido > span {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proyecto-scroll-pieza,
+  .proyecto-scroll-ficha {
+    will-change: auto;
+  }
+}
