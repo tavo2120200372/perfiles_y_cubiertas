@@ -4,7 +4,9 @@
   --contacto-suave: var(--texto-suave);
   --contacto-etiqueta: var(--texto-etiqueta);
   --contacto-acento: var(--acento);
+  position: relative;
   padding: 118px 56px 86px;
+  overflow-x: clip;
   background: var(--contacto-fondo);
   color: var(--contacto-texto);
   scroll-margin-top: 112px;
@@ -29,8 +31,37 @@
   gap: clamp(70px, 7vw, 128px);
 }
 
-.contacto .revelar {
-  min-width: 0;
+.contacto-entrada {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  animation: contacto-entrada 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.contacto-entrada--derecha {
+  transform: none;
+  animation: contacto-entrada-derecha 700ms ease 120ms forwards;
+}
+
+@keyframes contacto-entrada {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes contacto-entrada-derecha {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .contacto-principal,
@@ -542,6 +573,13 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .contacto-entrada,
+  .contacto-entrada--derecha {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
   .contacto-punto-pulso {
     animation: none;
     opacity: 0;

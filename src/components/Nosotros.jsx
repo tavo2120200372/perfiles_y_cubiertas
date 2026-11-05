@@ -13,35 +13,37 @@ function Nosotros({
       className="nosotros"
       aria-labelledby="nosotros-titulo"
     >
-      <div className="nosotros-contenedor">
-        <Revelar delay={0}>
-          <div className="nosotros-visual">
-            <img
-              className="nosotros-imagen"
-              src={imagen}
-              alt="Trabajo de fabricación realizado en el taller"
-              loading="lazy"
-            />
-            <span
-              className="nosotros-imagen-capa"
-              aria-hidden="true"
-            />
-            <LiquidGlass
-              as="div"
-              className="nosotros-ficha"
-              fuerza={10}
-              aumento={1.02}
-            >
-              <span className="nosotros-ficha-etiqueta">
-                DESDE
-              </span>
-              <strong>2007</strong>
-              <span className="nosotros-ficha-texto">
-                Fabricando en Guadalajara
-              </span>
-            </LiquidGlass>
-          </div>
-        </Revelar>
+     <div className="nosotros-contenedor">
+  <div className="nosotros-visual">
+    <img
+      className="nosotros-imagen"
+      src={imagen}
+      alt="Trabajo de fabricación realizado en el taller"
+      loading="lazy"
+    />
+
+    <span
+      className="nosotros-imagen-capa"
+      aria-hidden="true"
+    />
+
+    <LiquidGlass
+      as="div"
+      className="nosotros-ficha"
+      fuerza={10}
+      aumento={1.02}
+    >
+      <span className="nosotros-ficha-etiqueta">
+        DESDE
+      </span>
+
+      <strong>2007</strong>
+
+      <span className="nosotros-ficha-texto">
+        Fabricando en Guadalajara
+      </span>
+    </LiquidGlass>
+  </div>
 
         <Revelar delay={120}>
           <div className="nosotros-contenido">

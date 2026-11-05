@@ -90,199 +90,196 @@ function Contacto() {
       aria-labelledby="contacto-titulo"
     >
       <div className="contacto-contenedor">
-        <Revelar delay={0}>
-          <div className="contacto-principal">
-            <p className="contacto-etiqueta">
-              <span
-                className="contacto-punto"
-                aria-hidden="true"
-              >
-                <span className="contacto-punto-pulso" />
-                <span className="contacto-punto-centro" />
-              </span>
-              CONTÁCTANOS
-            </p>
-
-            <h2 id="contacto-titulo">
-              Cuéntanos qué
-              <br />
-              <strong>quieres construir.</strong>
-            </h2>
-
-            <p className="contacto-introduccion">
-              Levantamos medidas sin costo en Guadalajara y zona
-              metropolitana. Respondemos con propuesta y presupuesto
-              en menos de 24 horas hábiles.
-            </p>
-
-            <form
-              className="contacto-formulario"
-              onSubmit={enviarWhatsApp}
+        <div className="contacto-principal contacto-entrada contacto-entrada--izquierda">
+          <p className="contacto-etiqueta">
+            <span
+              className="contacto-punto"
+              aria-hidden="true"
             >
-              <div className="contacto-campos-dobles">
-                <label className="contacto-campo">
-                  <span>NOMBRE</span>
-                  <input
-                    type="text"
-                    name="nombre"
-                    value={formulario.nombre}
-                    onChange={actualizarCampo}
-                    placeholder="Tu nombre"
-                    autoComplete="name"
-                    required
-                  />
-                </label>
+              <span className="contacto-punto-pulso" />
+              <span className="contacto-punto-centro" />
+            </span>
+            CONTÁCTANOS
+          </p>
 
-                <label className="contacto-campo">
-                  <span>TELÉFONO</span>
-                  <input
-                    type="tel"
-                    name="telefono"
-                    value={formulario.telefono}
-                    onChange={actualizarCampo}
-                    placeholder="33 0000 0000"
-                    autoComplete="tel"
-                    required
-                  />
-                </label>
-              </div>
+          <h2 id="contacto-titulo">
+            Cuéntanos qué
+            <br />
+            <strong>quieres construir.</strong>
+          </h2>
 
+          <p className="contacto-introduccion">
+            Levantamos medidas sin costo en Guadalajara y zona
+            metropolitana. Respondemos con propuesta y presupuesto
+            en menos de 24 horas hábiles.
+          </p>
+
+          <form
+            className="contacto-formulario"
+            onSubmit={enviarWhatsApp}
+          >
+            <div className="contacto-campos-dobles">
               <label className="contacto-campo">
-                <span>SERVICIO DE INTERÉS</span>
-                <select
-                  name="servicio"
-                  value={formulario.servicio}
+                <span>NOMBRE</span>
+                <input
+                  type="text"
+                  name="nombre"
+                  value={formulario.nombre}
                   onChange={actualizarCampo}
-                  required
-                >
-                  {SERVICIOS.map((servicio) => (
-                    <option key={servicio} value={servicio}>
-                      {servicio}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              <label className="contacto-campo">
-                <span>DETALLES DEL PROYECTO</span>
-                <textarea
-                  name="detalles"
-                  value={formulario.detalles}
-                  onChange={actualizarCampo}
-                  placeholder="Medidas aproximadas, ubicación, tipo de acabado..."
-                  rows="5"
+                  placeholder="Tu nombre"
+                  autoComplete="name"
                   required
                 />
               </label>
 
-              <div className="contacto-envio">
-                <button type="submit">
-                  Enviar solicitud
-                </button>
-
-                <p>
-                  Se abrirá WhatsApp con tu mensaje listo para enviar.
-                </p>
-              </div>
-            </form>
-          </div>
-        </Revelar>
-
-        <Revelar delay={120}>
-          <aside className="contacto-lateral">
-            <LiquidGlass
-              as="div"
-              className="contacto-cristal-decorativo"
-              fuerza={10}
-              aumento={1.015}
-              aria-hidden="true"
-            />
-
-            <div className="contacto-tarjeta contacto-tarjeta--directos">
-              <p className="contacto-tarjeta-titulo">
-                DATOS DIRECTOS
-              </p>
-
-              <div className="contacto-directos">
-                <a href={`tel:+${TELEFONO_WHATSAPP}`}>
-                  <span className="contacto-icono">
-                    <IconoTelefono />
-                  </span>
-                  <span className="contacto-dato">
-                    <small>TELÉFONO</small>
-                    <strong>{TELEFONO_VISIBLE}</strong>
-                  </span>
-                </a>
-
-                <a href={`mailto:${CORREO}`}>
-                  <span className="contacto-icono">
-                    <IconoCorreo />
-                  </span>
-                  <span className="contacto-dato">
-                    <small>CORREO</small>
-                    <strong>{CORREO}</strong>
-                  </span>
-                </a>
-
-                <a
-                  href={`https://wa.me/${TELEFONO_WHATSAPP}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <span className="contacto-icono">
-                    <IconoWhatsApp />
-                  </span>
-                  <span className="contacto-dato">
-                    <small>WHATSAPP</small>
-                    <strong>{TELEFONO_VISIBLE}</strong>
-                  </span>
-                </a>
-              </div>
+              <label className="contacto-campo">
+                <span>TELÉFONO</span>
+                <input
+                  type="tel"
+                  name="telefono"
+                  value={formulario.telefono}
+                  onChange={actualizarCampo}
+                  placeholder="33 0000 0000"
+                  autoComplete="tel"
+                  required
+                />
+              </label>
             </div>
 
-            <div className="contacto-tarjeta contacto-tarjeta--taller">
-              <p className="contacto-tarjeta-titulo">
-                TALLER Y SHOWROOM
-              </p>
+            <label className="contacto-campo">
+              <span>SERVICIO DE INTERÉS</span>
+              <select
+                name="servicio"
+                value={formulario.servicio}
+                onChange={actualizarCampo}
+                required
+              >
+                {SERVICIOS.map((servicio) => (
+                  <option key={servicio} value={servicio}>
+                    {servicio}
+                  </option>
+                ))}
+              </select>
+            </label>
 
-              <p className="contacto-direccion">
-                Frijol #348, La Nogalera
-                <br />
-                44470 Guadalajara, Jal.
-              </p>
-
-              <div className="contacto-horarios">
-                <div>
-                  <span>Lunes a Viernes</span>
-                  <strong>8:00 – 18:00</strong>
-                </div>
-
-                <div>
-                  <span>Sábado</span>
-                  <strong>9:00 – 14:00</strong>
-                </div>
-
-                <div>
-                  <span>Domingo</span>
-                  <strong>Cerrado</strong>
-                </div>
-              </div>
-            </div>
-
-            <div className="contacto-mapa">
-              <iframe
-                title="Ubicación de Perfiles y Cubiertas"
-                src={`https://www.google.com/maps?q=${encodeURIComponent(DIRECCION)}&output=embed`}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+            <label className="contacto-campo">
+              <span>DETALLES DEL PROYECTO</span>
+              <textarea
+                name="detalles"
+                value={formulario.detalles}
+                onChange={actualizarCampo}
+                placeholder="Medidas aproximadas, ubicación, tipo de acabado..."
+                rows="5"
+                required
               />
-            </div>
+            </label>
 
-            <p className="contacto-cobertura">
-              Cobertura en Guadalajara, Zapopan, Tlaquepaque, Tonalá y Bajío.
+            <div className="contacto-envio">
+              <button type="submit">
+                Enviar solicitud
+              </button>
+
+              <p>
+                Se abrirá WhatsApp con tu mensaje listo para enviar.
+              </p>
+            </div>
+          </form>
+        </div>
+
+
+        <aside className="contacto-lateral contacto-entrada contacto-entrada--derecha">
+          <LiquidGlass
+            as="div"
+            className="contacto-cristal-decorativo"
+            fuerza={10}
+            aumento={1.015}
+            aria-hidden="true"
+          />
+
+          <div className="contacto-tarjeta contacto-tarjeta--directos">
+            <p className="contacto-tarjeta-titulo">
+              DATOS DIRECTOS
             </p>
-          </aside>
-        </Revelar>
+
+            <div className="contacto-directos">
+              <a href={`tel:+${TELEFONO_WHATSAPP}`}>
+                <span className="contacto-icono">
+                  <IconoTelefono />
+                </span>
+                <span className="contacto-dato">
+                  <small>TELÉFONO</small>
+                  <strong>{TELEFONO_VISIBLE}</strong>
+                </span>
+              </a>
+
+              <a href={`mailto:${CORREO}`}>
+                <span className="contacto-icono">
+                  <IconoCorreo />
+                </span>
+                <span className="contacto-dato">
+                  <small>CORREO</small>
+                  <strong>{CORREO}</strong>
+                </span>
+              </a>
+
+              <a
+                href={`https://wa.me/${TELEFONO_WHATSAPP}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="contacto-icono">
+                  <IconoWhatsApp />
+                </span>
+                <span className="contacto-dato">
+                  <small>WHATSAPP</small>
+                  <strong>{TELEFONO_VISIBLE}</strong>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div className="contacto-tarjeta contacto-tarjeta--taller">
+            <p className="contacto-tarjeta-titulo">
+              TALLER Y SHOWROOM
+            </p>
+
+            <p className="contacto-direccion">
+              Frijol #348, La Nogalera
+              <br />
+              44470 Guadalajara, Jal.
+            </p>
+
+            <div className="contacto-horarios">
+              <div>
+                <span>Lunes a Viernes</span>
+                <strong>8:00 – 18:00</strong>
+              </div>
+
+              <div>
+                <span>Sábado</span>
+                <strong>9:00 – 14:00</strong>
+              </div>
+
+              <div>
+                <span>Domingo</span>
+                <strong>Cerrado</strong>
+              </div>
+            </div>
+          </div>
+
+          <div className="contacto-mapa">
+            <iframe
+              title="Ubicación de Perfiles y Cubiertas"
+              src={`https://www.google.com/maps?q=${encodeURIComponent(DIRECCION)}&output=embed`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+
+          <p className="contacto-cobertura">
+            Cobertura en Guadalajara, Zapopan, Tlaquepaque, Tonalá y Bajío.
+          </p>
+        </aside>
       </div>
     </section>
   )

@@ -1,0 +1,42 @@
+.cursor-personalizado {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    transform: translate3d(-100px, -100px, 0);
+    transition: opacity 180ms ease;
+    will-change: transform;
+  }
+  
+  .cursor-personalizado--visible {
+    opacity: 1;
+  }
+  
+  .cursor-personalizado-punto {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #ffffff;
+    will-change: transform;
+  }
+  
+  @media (hover: none), (pointer: coarse) {
+    .cursor-personalizado {
+      display: none;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .cursor-personalizado {
+      transition: none;
+    }
+  }

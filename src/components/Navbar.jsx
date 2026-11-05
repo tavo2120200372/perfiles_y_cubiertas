@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import './Navbar.css'
 import SeparadorPulso from './SeparadorPulso'
 import {
@@ -15,26 +15,16 @@ const enlaces = [
   { href: '#contacto', texto: 'Contáctanos' },
 ]
 
-// Coloca el indicador en su posición final y guarda ese estado.
-function fijarIndicador(indicador, x, ancho) {
-  indicador.style.transform = `translate3d(${x}px, 0, 0)`
-  indicador.style.width = `${ancho}px`
-
-  indicador.dataset.x = String(x)
-  indicador.dataset.width = String(ancho)
-}
-
 function Navbar() {
   const encabezadoRef = useRef(null)
   const navegacionRef = useRef(null)
   const indicadorRef = useRef(null)
-
+  const navegacionProgramaticaRef = useRef(false)
+  const temporizadorDesbloqueoRef = useRef(null)
   const [seccionActiva, setSeccionActiva] = useState('inicio')
-
   const [tema, setTema] = useState(
     () => document.documentElement.dataset.theme || 'light',
   )
-
   const esOscuro = tema === 'dark'
 
   const cambiarTema = () => {
@@ -43,98 +33,115 @@ function Navbar() {
     )
   }
 
-  // Mantiene sincronizado el tema global y conserva la preferencia.
+  const manejarNavegacion = (evento, href, seccion) => {
+    const destino = document.querySelector(href)
+    if (!destino) return
+
+    evento.preventDefault()
+    navegacionProgramaticaRef.current = true
+    setSeccionActiva(seccion)
+
+    window.clearTimeout(temporizadorDesbloqueoRef.current)
+    temporizadorDesbloqueoRef.current = window.setTimeout(() => {
+      navegacionProgramaticaRef.current = false
+    }, 1400)
+
+    window.history.pushState(null, '', href)
+
+    destino.scrollIntoView({
+      behavior: prefiereMovimientoReducido() ? 'auto' : 'smooth',
+      block: 'start',
+    })
+  }
+
   useEffect(() => {
     document.documentElement.dataset.theme = tema
     localStorage.setItem('tema', tema)
   }, [tema])
 
-  // Mueve y deforma suavemente el indicador de la sección activa.
-  useEffect(() => {
+  useLayoutEffect(() => {
     const navegacion = navegacionRef.current
     const indicador = indicadorRef.current
-
     if (!navegacion || !indicador) return
 
     const destino = navegacion.querySelector(
       `[data-seccion="${seccionActiva}"]`,
     )
-
     if (!destino) return
 
     const navegacionRect = navegacion.getBoundingClientRect()
     const destinoRect = destino.getBoundingClientRect()
-
     const xDestino = destinoRect.left - navegacionRect.left
     const anchoDestino = destinoRect.width
 
-    const xAnterior = Number(indicador.dataset.x ?? xDestino)
-    const anchoAnterior = Number(
-      indicador.dataset.width ?? anchoDestino,
-    )
-
-    // Primera posición o movimiento reducido: sin animación.
-    if (
-      indicador.dataset.inicializado !== 'true' ||
-      prefiereMovimientoReducido()
-    ) {
-      fijarIndicador(indicador, xDestino, anchoDestino)
+    if (indicador.dataset.inicializado !== 'true') {
+      indicador.style.transition = 'none'
+      indicador.style.transform = `translate3d(${xDestino}px, 0, 0)`
+      indicador.style.width = `${anchoDestino}px`
       indicador.dataset.inicializado = 'true'
+      void indicador.offsetWidth
+      indicador.style.removeProperty('transition')
       return
     }
 
-    const distancia = Math.abs(xDestino - xAnterior)
-    const estiramiento = Math.min(1.45, 1 + distancia / 350)
-
-    indicador.style.transformOrigin =
-      xDestino > xAnterior ? 'left center' : 'right center'
-
-    const animacion = indicador.animate(
-      [
-        {
-          transform: `translate3d(${xAnterior}px, 0, 0) scaleX(1)`,
-          width: `${anchoAnterior}px`,
-        },
-        {
-          transform: `translate3d(${
-            (xAnterior + xDestino) / 2
-          }px, 0, 0) scaleX(${estiramiento})`,
-          width: `${(anchoAnterior + anchoDestino) / 2}px`,
-          offset: 0.45,
-        },
-        {
-          transform: `translate3d(${xDestino}px, 0, 0) scaleX(1)`,
-          width: `${anchoDestino}px`,
-        },
-      ],
-      {
-        duration: 520,
-        easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-        fill: 'forwards',
-      },
-    )
-
-    animacion.onfinish = () => {
-      fijarIndicador(indicador, xDestino, anchoDestino)
+    if (prefiereMovimientoReducido()) {
+      indicador.style.transition = 'none'
+    } else {
+      indicador.style.removeProperty('transition')
     }
 
-    return () => {
-      animacion.cancel()
-    }
+    indicador.style.transform = `translate3d(${xDestino}px, 0, 0)`
+    indicador.style.width = `${anchoDestino}px`
   }, [seccionActiva])
 
-  // Detecta la sección visible y actualiza el indicador al hacer scroll.
+  useEffect(() => {
+    let temporizadorFinScroll = null
+
+    const finalizarNavegacionProgramatica = () => {
+      if (!navegacionProgramaticaRef.current) return
+      navegacionProgramaticaRef.current = false
+      window.clearTimeout(temporizadorDesbloqueoRef.current)
+    }
+
+    const detectarFinScroll = () => {
+      if (!navegacionProgramaticaRef.current) return
+      window.clearTimeout(temporizadorFinScroll)
+      temporizadorFinScroll = window.setTimeout(
+        finalizarNavegacionProgramatica,
+        140,
+      )
+    }
+
+    window.addEventListener('scroll', detectarFinScroll, {
+      passive: true,
+    })
+    window.addEventListener(
+      'scrollend',
+      finalizarNavegacionProgramatica,
+    )
+
+    return () => {
+      window.removeEventListener('scroll', detectarFinScroll)
+      window.removeEventListener(
+        'scrollend',
+        finalizarNavegacionProgramatica,
+      )
+      window.clearTimeout(temporizadorFinScroll)
+      window.clearTimeout(temporizadorDesbloqueoRef.current)
+    }
+  }, [])
+
   useEffect(() => {
     const secciones = enlaces
       .map(({ href }) => document.querySelector(href))
       .filter(Boolean)
-
     if (!secciones.length) return
 
     return suscribirScrollYResize(() => {
+      if (navegacionProgramaticaRef.current) return
+
       const puntoReferencia =
         window.scrollY + window.innerHeight * 0.35
-
       let activa = secciones[0].id
 
       secciones.forEach((seccion) => {
@@ -147,10 +154,8 @@ function Navbar() {
     })
   }, [])
 
-  // Contrae progresivamente el encabezado hacia el centro al hacer scroll.
   useEffect(() => {
     const encabezado = encabezadoRef.current
-
     if (!encabezado) return
 
     return suscribirScrollYResize(() => {
@@ -166,13 +171,9 @@ function Navbar() {
         anchoInicial,
         Math.max(820, anchoVentana * 0.56),
       )
-
       const progresoBase = limitar(window.scrollY / 520, 0, 1)
-
-      // Interpolación suavizada (smoothstep).
       const progreso =
         progresoBase * progresoBase * (3 - 2 * progresoBase)
-
       const anchoActual =
         anchoInicial + (anchoFinal - anchoInicial) * progreso
 
@@ -186,9 +187,11 @@ function Navbar() {
         href="#inicio"
         className="marca"
         aria-label="Perfiles y Cubiertas, inicio"
+        onClick={(evento) =>
+          manejarNavegacion(evento, '#inicio', 'inicio')
+        }
       >
         <span className="marca-siglas">PyC</span>
-
         <span className="marca-nombre">
           PERFILES
           <span>Y CUBIERTAS</span>
@@ -217,7 +220,9 @@ function Navbar() {
               aria-current={
                 seccionActiva === seccion ? 'page' : undefined
               }
-              onClick={() => setSeccionActiva(seccion)}
+              onClick={(evento) =>
+                manejarNavegacion(evento, href, seccion)
+              }
             >
               {texto}
             </a>
@@ -245,7 +250,13 @@ function Navbar() {
           )}
         </button>
 
-        <a href="#contacto" className="boton-cotizar">
+        <a
+          href="#contacto"
+          className="boton-cotizar"
+          onClick={(evento) =>
+            manejarNavegacion(evento, '#contacto', 'contacto')
+          }
+        >
           <SeparadorPulso />
           Cotizar
         </a>

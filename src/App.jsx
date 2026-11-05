@@ -5,11 +5,14 @@ import Servicios from './components/Servicios'
 import Trabajos from './components/Trabajos'
 import Nosotros from './components/Nosotros'
 import Contacto from './components/Contacto'
+import Footer from './components/Footer'
+import CursorPersonalizado from './components/CursorPersonalizado'
 import './App.css'
 
 function App() {
   return (
     <>
+      <CursorPersonalizado />
       <Navbar />
 
       <main>
@@ -23,6 +26,8 @@ function App() {
         <Nosotros />
         <Contacto />
       </main>
+
+      <Footer />
     </>
   )
 }
