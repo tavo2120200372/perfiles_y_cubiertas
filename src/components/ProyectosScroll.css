@@ -138,8 +138,8 @@
   inset: 0;
   overflow: hidden;
   border-radius: 28px;
-  background: var(--fondo-imagen);
-  box-shadow: 0 18px 60px rgba(16, 24, 32, 0.08);
+  background: transparent;
+  box-shadow: none;
 }
 
 .proyecto-scroll-pieza {
@@ -153,19 +153,27 @@
 }
 
 .proyecto-scroll-pieza--1 {
-  clip-path: inset(0 43% 53% 0);
+  clip-path: inset(0 72.8% 41.8% 0);
 }
 
 .proyecto-scroll-pieza--2 {
-  clip-path: inset(0 0 53% 57%);
+  clip-path: inset(0 36.8% 61.8% 26.8%);
 }
 
 .proyecto-scroll-pieza--3 {
-  clip-path: inset(47% 57% 0 0);
+  clip-path: inset(0 0 33.8% 62.8%);
 }
 
 .proyecto-scroll-pieza--4 {
-  clip-path: inset(47% 0 0 43%);
+  clip-path: inset(57.8% 72.8% 0 0);
+}
+
+.proyecto-scroll-pieza--5 {
+  clip-path: inset(37.8% 36.8% 0 26.8%);
+}
+
+.proyecto-scroll-pieza--6 {
+  clip-path: inset(65.8% 0 0 62.8%);
 }
 
 .proyecto-scroll-ficha {
@@ -367,14 +375,14 @@
     bottom: auto;
     left: auto;
   }
-
+  
   .ficha-b {
     top: 55%;
     left: 3%;
     right: auto;
     bottom: auto;
   }
-
+  
   .ficha-c {
     top: 73%;
     right: 3%;

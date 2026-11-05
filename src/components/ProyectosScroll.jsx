@@ -89,7 +89,7 @@ function ProyectosScroll() {
         const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: escena,
-            start: "top top",
+            start: "top 90%",
             end: () => `+=${window.innerHeight * 2.25}`,
             pin: true,
             scrub: 0.8,
@@ -102,8 +102,8 @@ function ProyectosScroll() {
           .from(
             piezas[0],
             {
-              xPercent: -46,
-              yPercent: -30,
+              xPercent: -52,
+              yPercent: -36,
               autoAlpha: 0,
               duration: 1,
               ease: "none",
@@ -113,30 +113,52 @@ function ProyectosScroll() {
           .from(
             piezas[1],
             {
-              xPercent: 44,
-              yPercent: -34,
+              xPercent: 14,
+              yPercent: -48,
               autoAlpha: 0,
               duration: 1,
               ease: "none",
             },
-            0.08,
+            0.05,
           )
           .from(
             piezas[2],
             {
-              xPercent: -40,
-              yPercent: 38,
+              xPercent: 48,
+              yPercent: -30,
               autoAlpha: 0,
               duration: 1,
               ease: "none",
             },
-            0.16,
+            0.1,
           )
           .from(
             piezas[3],
             {
-              xPercent: 40,
-              yPercent: 42,
+              xPercent: -46,
+              yPercent: 32,
+              autoAlpha: 0,
+              duration: 1,
+              ease: "none",
+            },
+            0.15,
+          )
+          .from(
+            piezas[4],
+            {
+              xPercent: 12,
+              yPercent: 44,
+              autoAlpha: 0,
+              duration: 1,
+              ease: "none",
+            },
+            0.2,
+          )
+          .from(
+            piezas[5],
+            {
+              xPercent: 52,
+              yPercent: 36,
               autoAlpha: 0,
               duration: 1,
               ease: "none",
@@ -153,7 +175,7 @@ function ProyectosScroll() {
               duration: 0.48,
               ease: "none",
             },
-            1.12,
+            1.3,
           )
           .to({}, { duration: 0.5 });
       });
@@ -194,10 +216,12 @@ function ProyectosScroll() {
 
             <div className="proyecto-scroll-visual">
               <div className="proyecto-scroll-imagen">
-                <div className="proyecto-scroll-pieza proyecto-scroll-pieza--1" />
-                <div className="proyecto-scroll-pieza proyecto-scroll-pieza--2" />
-                <div className="proyecto-scroll-pieza proyecto-scroll-pieza--3" />
-                <div className="proyecto-scroll-pieza proyecto-scroll-pieza--4" />
+                {Array.from({ length: 6 }, (_, indice) => (
+                  <div
+                    key={indice}
+                    className={`proyecto-scroll-pieza proyecto-scroll-pieza--${indice + 1}`}
+                  />
+                ))}
               </div>
 
               {proyecto.fichas.map((ficha) => (
